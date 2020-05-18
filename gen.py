@@ -96,5 +96,5 @@ for v in vers:
     url = "https://github.com/gcc-mirror/gcc/archive/releases/gcc-{}.tar.gz".format(v)
     output_docker_file(v, url)
 
-
+output_docker_file("master", "https://github.com/gcc-mirror/gcc/archive/master.tar.gz")
 
