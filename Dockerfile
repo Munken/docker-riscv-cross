@@ -45,6 +45,18 @@ RUN  make install-target-libgcc
     
 FROM ubuntu
 
+RUN apt-get update -y \
+    && apt-get install -y \
+    build-essential \
+    bison \
+    flex \
+    libgmp3-dev \
+    libmpc-dev \
+    libmpfr-dev \
+    texinfo \
+    libcloog-isl-dev \
+    libisl-0.18-dev
+
 ARG INSTALL_PREFIX=/usr/local/cross
 ARG TARGET=riscv-elf
 
