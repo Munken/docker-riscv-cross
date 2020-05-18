@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:bionic
 
 RUN apt-get update -y \
     && apt-get install -y \
@@ -43,7 +43,7 @@ RUN  make install-gcc
 RUN  make install-target-libgcc
 
     
-FROM ubuntu
+FROM ubuntu:bionic
 
 RUN apt-get update -y \
     && apt-get install -y \
