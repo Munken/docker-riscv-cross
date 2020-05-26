@@ -17,7 +17,7 @@ RUN apt-get update -y \
     libisl-0.18-dev
 
 ARG INSTALL_PREFIX=/usr/local/cross
-ARG TARGET=riscv-elf
+ARG TARGET=${target}
 ENV PATH "$$INSTALL_PREFIX/bin:$$PATH"
 
 RUN apt-get install -y wget curl git
@@ -66,7 +66,7 @@ RUN apt-get update -y \
     libisl-0.18-dev
 
 ARG INSTALL_PREFIX=/usr/local/cross
-ARG TARGET=riscv-elf
+ARG TARGET=${target}
 
 ENV PATH "$$INSTALL_PREFIX/bin:$$PATH"
 ENV CROSS_COMPILE $${TARGET}-
@@ -76,25 +76,25 @@ COPY --from=0 $$INSTALL_PREFIX $$INSTALL_PREFIX
 """)
 
 vers = [
-    "8.1.0",
-    "8.2.0",
-    "8.3.0",
-    "8.4.0",
-    "9.1.0",    
-    "9.2.0",
-    "9.3.0",
-    "10.1.0"
+    ("8.1.0", "riscv64-elf"),
+    ("8.2.0", "riscv64-elf"),
+    ("8.3.0", "riscv64-elf"),
+    ("8.4.0", "riscv64-elf"),
+    ("9.1.0", "riscv-elf"),
+    ("9.2.0", "riscv-elf"),
+    ("9.3.0", "riscv-elf"),
+    ("10.1.0", "riscv-elf")    
 ]
 
-def output_docker_file(d, gcc_url):
+def output_docker_file(d, gcc_url, target):
     os.makedirs(d, exist_ok=True)
     with open("{}/Dockerfile".format(d), "w") as f:
-        s = temp.substitute(gcc_url=gcc_url)
+        s = temp.substitute(gcc_url=gcc_url, target=target)
         f.write(s)
 
-for v in vers:
+for v, target in vers:
     url = "https://github.com/gcc-mirror/gcc/archive/releases/gcc-{}.tar.gz".format(v)
-    output_docker_file(v, url)
+    output_docker_file(v, url, target)
 
-output_docker_file("master", "https://github.com/gcc-mirror/gcc/archive/master.tar.gz")
+output_docker_file("master", "https://github.com/gcc-mirror/gcc/archive/master.tar.gz", "riscv-elf")
 

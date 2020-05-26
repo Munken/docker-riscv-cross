@@ -4,7 +4,7 @@ FROM ubuntu:bionic
 RUN apt-get update -y     && apt-get install -y     build-essential     bison     flex     libgmp3-dev     libmpc-dev     libmpfr-dev     texinfo     libcloog-isl-dev     libisl-0.18-dev
 
 ARG INSTALL_PREFIX=/usr/local/cross
-ARG TARGET=riscv-elf
+ARG TARGET=riscv64-elf
 ENV PATH "$INSTALL_PREFIX/bin:$PATH"
 
 RUN apt-get install -y wget curl git
@@ -35,7 +35,7 @@ FROM ubuntu:bionic
 RUN apt-get update -y     && apt-get install -y     build-essential     bison     flex     libgmp3-dev     libmpc-dev     libmpfr-dev     texinfo     libcloog-isl-dev     libisl-0.18-dev
 
 ARG INSTALL_PREFIX=/usr/local/cross
-ARG TARGET=riscv-elf
+ARG TARGET=riscv64-elf
 
 ENV PATH "$INSTALL_PREFIX/bin:$PATH"
 ENV CROSS_COMPILE ${TARGET}-
