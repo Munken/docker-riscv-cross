@@ -76,6 +76,11 @@ COPY --from=0 $$INSTALL_PREFIX $$INSTALL_PREFIX
 """)
 
 vers = [
+    ("7.1.0", "riscv64-elf"),
+    ("7.2.0", "riscv64-elf"),
+    ("7.3.0", "riscv64-elf"),
+    ("7.4.0", "riscv64-elf"),
+    ("7.5.0", "riscv64-elf"),        
     ("8.1.0", "riscv64-elf"),
     ("8.2.0", "riscv64-elf"),
     ("8.3.0", "riscv64-elf"),
